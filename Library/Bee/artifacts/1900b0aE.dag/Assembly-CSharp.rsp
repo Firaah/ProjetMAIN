@@ -427,7 +427,15 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.58f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.58f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/CameraFollow.cs"
+"Assets/EnemyMovement.cs"
+"Assets/EnemySpawner.cs"
+"Assets/FollowPlayer.cs"
+"Assets/Health.cs"
+"Assets/LaserPrefab.cs"
+"Assets/LaserShooter.cs"
 "Assets/PlayerMovement.cs"
+"Assets/PowerUp.cs"
+"Assets/powerUpSpawner.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

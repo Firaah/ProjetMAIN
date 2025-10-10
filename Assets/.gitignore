@@ -1,0 +1,54 @@
+# =========================
+# Fichiers générés par Unity
+# =========================
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+
+# Visual Studio / Rider
+.vscode/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+
+# JetBrains Rider
+.idea/
+
+# MonoDevelop
+*.pidb
+*.userprefs
+
+# Cache des packages Unity
+[Pp]ackages/manifest.json
+[Pp]ackages/packages-lock.json
+
+# Asset meta files
+*.pidb.meta
+*.pdb.meta
+
+# Autres
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+
+# Git LFS (si utilisé)
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text

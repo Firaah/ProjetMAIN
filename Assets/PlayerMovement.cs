@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10f; // vitesse du joueur
-    public float minX = -15f;  // limite gauche
-    public float maxX = 15f;   // limite droite
+    public float minX = -12.5f;  // limite gauche
+    public float maxX = 12.5f;   // limite droite
     
     void Update()
     {
