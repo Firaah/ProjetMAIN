@@ -3,10 +3,10 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     
-    public float maxHealth = 10f; // PV maximum
+    public float maxHealth; // PV maximum
     private float currentHealth;
 
-    void start()
+    void Awake()
     {
         currentHealth = maxHealth;
     }

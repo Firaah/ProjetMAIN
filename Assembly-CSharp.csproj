@@ -55,6 +55,7 @@
     <Compile Include="Assets\powerUpSpawner.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
+    <Compile Include="Assets\bossHealthBar.cs" />
     <Compile Include="Assets\PowerUp.cs" />
     <Compile Include="Assets\EnemyMovement.cs" />
     <Compile Include="Assets\CameraFollow.cs" />

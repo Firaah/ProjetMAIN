@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;     // la capsule à spawn
-    public int enemiesPerLine = 5;     // nombre d'ennemis par ligne
-    public int linesPerWave = 10;      // nombre de lignes par vague
-    public float spacingX = 2f;        // espacement horizontal entre les ennemis
-    public float spacingZ = 3f;        // espacement entre les lignes
-    public Vector3 startPosition = new Vector3(0, 1, 40); // point de départ de la première ligne
+    public GameObject enemyPrefab;     // Capsule à spawn
+    public GameObject bossPrefab;      // Prefab du boss à assigner dans l’inspector
+    public int enemiesPerLine = 5;     // Nombre d'ennemis par ligne
+    public int linesPerWave = 10;      // Nombre de lignes par vague
+    public float spacingX = 2f;        // Espacement horizontal entre les ennemis
+    public float spacingZ = 3f;        // Espacement entre les lignes
+    public Vector3 startPosition = new Vector3(0, 1, 40); // Point de départ de la première ligne
 
     public void SpawnWave()
     {
@@ -15,8 +16,7 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < enemiesPerLine; i++)
             {
-                // position de chaque ennemi dans la ligne
-                float xPos = (i - (enemiesPerLine - 1) / 2f) * spacingX; // centre la ligne
+                float xPos = (i - (enemiesPerLine - 1) / 2f) * spacingX;
                 float zPos = startPosition.z + (line * spacingZ);
                 Vector3 spawnPos = new Vector3(xPos, startPosition.y, zPos);
 
@@ -25,9 +25,21 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Pour tester facilement depuis l’éditeur
+    public void SpawnBoss()
+    {
+        // Position du boss : au centre et un peu plus loin que la dernière ligne
+        Vector3 bossPos = new Vector3(0, startPosition.y, startPosition.z + linesPerWave * spacingZ + 5f);
+
+        GameObject boss = Instantiate(bossPrefab, bossPos, Quaternion.identity);
+        boss.SetActive(true);
+                
+    }
+
     void Start()
     {
         SpawnWave();
+
+        // On peut spawn le boss après un délai ou immédiatement
+        SpawnBoss();
     }
 }

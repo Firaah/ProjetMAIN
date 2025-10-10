@@ -31,6 +31,16 @@ public class LaserPrefab : MonoBehaviour
                 Destroy(hit.collider.gameObject);
                 Destroy(gameObject); // détruit le laser
             }
+            if (hit.collider.CompareTag("Boss"))
+            {
+                Health bossHealth = hit.collider.GetComponent<Health>();
+                if (bossHealth != null)
+                {
+                    bossHealth.TakeDamage(damage);
+                }
+                Destroy(gameObject); // détruit le laser
+            }
+
         }
 
         // Détruire si trop loin
