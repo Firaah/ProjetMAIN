@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\FollowPlayer.cs" />
+    <Compile Include="Assets\deadLine.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\LaserShooter.cs" />
     <Compile Include="Assets\LaserPrefab.cs" />
@@ -56,8 +57,10 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\bossHealthBar.cs" />
+    <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\PowerUp.cs" />
     <Compile Include="Assets\EnemyMovement.cs" />
+    <Compile Include="Assets\responsivHealthBar.cs" />
     <Compile Include="Assets\CameraFollow.cs" />
   </ItemGroup>
   <ItemGroup>

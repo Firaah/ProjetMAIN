@@ -3,43 +3,58 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;     // Capsule à spawn
-    public GameObject bossPrefab;      // Prefab du boss à assigner dans l’inspector
+    public GameObject bossPrefab;   // Prefab du boss à assigner dans l’inspector
+    public GameObject bossHealthBarPrefab;     
+    public Transform canvasHUD; 
     public int enemiesPerLine = 5;     // Nombre d'ennemis par ligne
-    public int linesPerWave = 10;      // Nombre de lignes par vague
     public float spacingX = 2f;        // Espacement horizontal entre les ennemis
-    public float spacingZ = 3f;        // Espacement entre les lignes
     public Vector3 startPosition = new Vector3(0, 1, 40); // Point de départ de la première ligne
 
-    public void SpawnWave()
+    public void SpawnLine()
     {
-        for (int line = 0; line < linesPerWave; line++)
-        {
             for (int i = 0; i < enemiesPerLine; i++)
             {
                 float xPos = (i - (enemiesPerLine - 1) / 2f) * spacingX;
-                float zPos = startPosition.z + (line * spacingZ);
-                Vector3 spawnPos = new Vector3(xPos, startPosition.y, zPos);
-
+                Vector3 spawnPos = new Vector3(xPos, startPosition.y, 40);
                 Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
             }
-        }
     }
 
     public void SpawnBoss()
-    {
-        // Position du boss : au centre et un peu plus loin que la dernière ligne
-        Vector3 bossPos = new Vector3(0, startPosition.y, startPosition.z + linesPerWave * spacingZ + 5f);
+{
+    // 1. Spawn le boss
+    GameObject boss = Instantiate(bossPrefab, startPosition, Quaternion.identity);
+    boss.SetActive(true);
 
-        GameObject boss = Instantiate(bossPrefab, bossPos, Quaternion.identity);
-        boss.SetActive(true);
-                
+    // 2. Récupère le Health du boss
+    Health bossHealth = boss.GetComponent<Health>();
+    if (bossHealth == null)
+    {
+        Debug.LogError("Le boss n’a pas de script Health !");
+        return;
     }
 
-    void Start()
-    {
-        SpawnWave();
+    // 3. Spawn la barre dans le Canvas HUD
+    GameObject hpBarObj = Instantiate(bossHealthBarPrefab, canvasHUD);
+    hpBarObj.SetActive(true);
+    Debug.Log("Activation de : " + hpBarObj.name + " | ActiveSelf=" + hpBarObj.activeSelf + " | ActiveInHierarchy=" + hpBarObj.activeInHierarchy);
 
-        // On peut spawn le boss après un délai ou immédiatement
-        SpawnBoss();
+
+
+    // 4. Lie la barre au boss
+    BossHealthBar hpBar = hpBarObj.GetComponent<BossHealthBar>();
+    if (hpBar != null)
+    {
+        hpBar.bossHealth = bossHealth;
+        hpBar.UpdateBarInstant();
     }
+    else
+    {
+        Debug.LogError("Le prefab n’a pas de script BossHealthBar !");
+    }
+
+    // 5. (Optionnel) Forcer le Canvas à se mettre à jour visuellement
+    Canvas.ForceUpdateCanvases();
+}
+
 }

@@ -428,15 +428,18 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.58f2/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/bossHealthBar.cs"
 "Assets/CameraFollow.cs"
+"Assets/deadLine.cs"
 "Assets/EnemyMovement.cs"
 "Assets/EnemySpawner.cs"
 "Assets/FollowPlayer.cs"
+"Assets/GameManager.cs"
 "Assets/Health.cs"
 "Assets/LaserPrefab.cs"
 "Assets/LaserShooter.cs"
 "Assets/PlayerMovement.cs"
 "Assets/PowerUp.cs"
 "Assets/powerUpSpawner.cs"
+"Assets/responsivHealthBar.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

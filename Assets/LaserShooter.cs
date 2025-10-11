@@ -6,7 +6,7 @@ public class LaserShooter : MonoBehaviour
     public GameObject laserPrefab;
     public float fireRate = 0.2f;
     private float nextFireTime = 0f;
-    public float damage = 1f;
+    public float damage = 2f;
     public float damageMultiplier = 1f;
 
     void Update()
