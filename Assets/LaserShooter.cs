@@ -4,10 +4,8 @@ public class LaserShooter : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject laserPrefab;
-    public float fireRate = 0.2f;
+    public float fireRate = 0.1f;
     private float nextFireTime = 0f;
-    public float damage = 2f;
-    public float damageMultiplier = 1f;
 
     void Update()
     {

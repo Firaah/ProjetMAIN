@@ -1,20 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
     public event System.Action<float> healthChange;
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
+    public GameObject bazooka; // le bazooka du joueur
 
-    public bool isDead => currentHealth <=0;
+    public bool isDead => currentHealth <= 0;
 
     void Start()
     {
         currentHealth = maxHealth;
-        if (healthChange != null)
-        {
-            healthChange(getNormalizedHealth());
-        }
+        healthChange?.Invoke(getNormalizedHealth());
     }
 
     public float getNormalizedHealth()
@@ -24,15 +23,11 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if(isDead) return;
+        if (isDead) return;
+
         currentHealth = Mathf.Clamp(currentHealth - damage, 0f, maxHealth);
+        healthChange?.Invoke(getNormalizedHealth());
 
-        if (healthChange != null)
-        {
-            healthChange(getNormalizedHealth());
-        }
-
-        // Vérifie si l'objet doit mourir
         if (currentHealth <= 0f)
         {
             Die();
@@ -41,14 +36,12 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        // Ici tu peux ajouter un effet visuel, son, explosion, etc.
-        Destroy(gameObject);
+        // Lance la séquence de mort complète
+        GameManager.Instance.BossDead(gameObject);
     }
 
-    
     public float GetCurrentHealth()
     {
         return currentHealth;
     }
-   
 }

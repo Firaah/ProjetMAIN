@@ -21,40 +21,37 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void SpawnBoss()
-{
-    // 1. Spawn le boss
-    GameObject boss = Instantiate(bossPrefab, startPosition, Quaternion.identity);
-    boss.SetActive(true);
-
-    // 2. Récupère le Health du boss
-    Health bossHealth = boss.GetComponent<Health>();
-    if (bossHealth == null)
     {
-        Debug.LogError("Le boss n’a pas de script Health !");
-        return;
+        // 1. Spawn le boss
+        GameObject boss = Instantiate(bossPrefab, startPosition, Quaternion.identity);
+        boss.SetActive(true);
+
+        // 2. Récupère le Health du boss
+        Health bossHealth = boss.GetComponent<Health>();
+        if (bossHealth == null)
+        {
+            Debug.LogError("Le boss n’a pas de script Health !");
+            return;
+        }
+
+        // 3. Spawn la barre dans le Canvas HUD
+        GameObject hpBarObj = Instantiate(bossHealthBarPrefab, canvasHUD);
+        hpBarObj.SetActive(true);
+
+        // 4. Lie la barre au boss
+        BossHealthBar hpBar = hpBarObj.GetComponent<BossHealthBar>();
+        if (hpBar != null)
+        {
+            hpBar.bossHealth = bossHealth;
+            hpBar.UpdateBarInstant();
+        }
+        else
+        {
+            Debug.LogError("Le prefab n’a pas de script BossHealthBar !");
+        }
+
+        // 5. (Optionnel) Forcer le Canvas à se mettre à jour visuellement
+        Canvas.ForceUpdateCanvases();
     }
-
-    // 3. Spawn la barre dans le Canvas HUD
-    GameObject hpBarObj = Instantiate(bossHealthBarPrefab, canvasHUD);
-    hpBarObj.SetActive(true);
-    Debug.Log("Activation de : " + hpBarObj.name + " | ActiveSelf=" + hpBarObj.activeSelf + " | ActiveInHierarchy=" + hpBarObj.activeInHierarchy);
-
-
-
-    // 4. Lie la barre au boss
-    BossHealthBar hpBar = hpBarObj.GetComponent<BossHealthBar>();
-    if (hpBar != null)
-    {
-        hpBar.bossHealth = bossHealth;
-        hpBar.UpdateBarInstant();
-    }
-    else
-    {
-        Debug.LogError("Le prefab n’a pas de script BossHealthBar !");
-    }
-
-    // 5. (Optionnel) Forcer le Canvas à se mettre à jour visuellement
-    Canvas.ForceUpdateCanvases();
-}
 
 }

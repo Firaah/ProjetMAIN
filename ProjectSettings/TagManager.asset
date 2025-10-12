@@ -7,6 +7,10 @@ TagManager:
   - Map
   - Enemy
   - Boss
+  - Ally
+  - Pyramid
+  - Sarcophage
+  - PowerUp
   layers:
   - Default
   - TransparentFX
