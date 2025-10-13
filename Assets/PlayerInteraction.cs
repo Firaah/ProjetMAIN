@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using TMPro; // si tu utilises TextMeshPro
 
 public class PlayerInteraction : MonoBehaviour
@@ -57,11 +58,13 @@ public class PlayerInteraction : MonoBehaviour
     private void ApplyDamageBoost()
     {
         LaserPrefab.damage *=2;
+        ShowTMPMessage("Degats X2");
     }
 
     void SpawnAllyNextToPlayer()
     {
         allyCount++;
+        ShowTMPMessage("+1 Allié");
 
         // Décide l'offset à gauche ou à droite
         Vector3 offset = allyCount == 1 ? new Vector3(-1.5f, 0, 0) : new Vector3(1.5f, 0, 0);
@@ -81,5 +84,18 @@ public class PlayerInteraction : MonoBehaviour
             Physics.IgnoreCollision(allyCol, playerCol);
 
         ally.SetActive(true);
+    }
+
+    public void ShowTMPMessage(string text)
+    {
+        StartCoroutine(ShowTMPMessageCoroutine(text));
+    }
+
+    private IEnumerator ShowTMPMessageCoroutine(string text)
+    {
+        interactionText.text = text;
+        interactionText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f); // ← affiché 1 seconde
+        interactionText.gameObject.SetActive(false);
     }
 }
