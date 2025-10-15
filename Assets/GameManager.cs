@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
         amumu.RiseAndRotate();
         interactionText.text = "Felicitation vous avez liberé Amumu !";
         interactionText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         Time.timeScale = 0f;
         StopAllCoroutines();
         enemySpawner.enabled = false;

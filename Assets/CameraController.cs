@@ -73,8 +73,21 @@ public class CameraController : MonoBehaviour
     // ✅ --- Nouvelle fonction : placer la caméra à une position/rotation fixe ---
     public void SetFinalCamera()
     {
-        isFollowing = false; // désactive le suivi du joueur
-        transform.position = new Vector3(-10f, 8f, -120f);
-        transform.rotation = Quaternion.Euler(10f, 0f, 0f);
+    isFollowing = false; // désactive le suivi du joueur
+    transform.position = new Vector3(-10f, 5.5f, -120f);
+    transform.rotation = Quaternion.Euler(10f, 0f, 0f);
+
+    // Lance la coroutine pour avancer après 1 seconde
+    StartCoroutine(MoveCameraForward());
     }
+
+    private IEnumerator MoveCameraForward()
+    {
+        yield return new WaitForSeconds(3f); // attend 1 seconde
+
+        // Avance la caméra de 11.5 sur Z
+        Vector3 newPos = transform.position + new Vector3(0f, 0f, 11.5f);
+        transform.position = newPos;
+    }
+
 }
